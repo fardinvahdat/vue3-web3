@@ -33,15 +33,9 @@ export default class EthersService {
       const { ethereum } = await window;
       if (ethereum) {
         this.provider = new ethers.providers.Web3Provider(window.ethereum);
-        try {
-          const balance = await this.provider.getBalance(
-            "0x3da2581ad70D98a45ebE7D3A51D821ddDe640432"
-          );
-          console.log("this is balance: ", balance);
-          return ethers.utils.formatEther(balance);
-        } catch (err) {
-          console.log(err);
-        }
+        const balance = await this.provider.getBalance(address);
+        console.log("this is balance: ", balance);
+        return ethers.utils.formatEther(balance);
       }
     } catch (error) {
       console.log(error);
