@@ -5,6 +5,11 @@ export default class EthersService {
     this.provider = null;
     this.signer = null;
     this.address = "";
+    this.lineaNetwork = {
+      chainId: 12345, // Replace with the actual chainId for LINEA
+      name: "LINEA",
+      rpcUrl: "https://rpc.linea.network", // Replace with the actual RPC URL for LINEA
+    };
   }
 
   async connectWallet() {
@@ -40,5 +45,10 @@ export default class EthersService {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  async createLineaProvider() {
+    const provider = new ethers.providers.JsonRpcProvider(lineaNetwork.rpcUrl);
+    return provider;
   }
 }
